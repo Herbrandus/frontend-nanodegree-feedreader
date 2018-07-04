@@ -96,44 +96,47 @@ $(function() {
 
         beforeEach(function(done) {
             loadFeed(0, function() {
-                feedId++;
                 done();
-
             });
         });
 
         it('are called and exist in DOM', function(done) {
-            // expect(feedId).toBeTruthy();
             expect(document.querySelector('.entry-link')).not.toBe(null);
             done();
         });
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-
     describe('New Feed Selection', function() {
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-
         var firstElement = null;
         var secondElement = null;
 
         beforeEach(function(done) {
-            loadFeed(0, function() {
-                firstElement = document.querySelector('.entry-link').getAttribute('href');
-                done();
-            });
 
-            loadFeed(1, function() {
-                secondElement = document.querySelector('.entry-link').getAttribute('href');
-                done();
+            loadFeed(0, function() {
+                // save the first link in a variable
+                firstElement = document.querySelector('.entry-link').getAttribute('href');
+            
+                loadFeed(1, function() {
+                    // also save the second after getting new data
+                    secondElement = document.querySelector('.entry-link').getAttribute('href');
+                    done();
+                });
             });
+            
         });
+        
         it('changes after loading another', function(done) {
+            // compare the two elements from the functions
+            // they should not be equal 
+            // If they are, it would mean loadFeed did not load new data
             expect(firstElement == secondElement).toBe(false);
+            done();
         });
     });
 
