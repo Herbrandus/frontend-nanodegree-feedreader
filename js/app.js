@@ -6,6 +6,9 @@
  * jQuery.
  */
 
+var feedId = 0,
+    entries;
+
 // The names and URLs to all of the feeds we'd like available.
 var allFeeds = [
     {
