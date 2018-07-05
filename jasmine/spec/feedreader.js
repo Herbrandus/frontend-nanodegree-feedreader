@@ -87,7 +87,7 @@ $(function() {
          */        
 
         beforeEach(function(done) {
-            loadFeed(0,  done);
+            loadFeed(0, done);
         });
 
         it('are called and exist in DOM', function(done) {
